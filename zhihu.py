@@ -21,6 +21,9 @@ for i in range(0, 50):
 	hot_response=requests.get(html_list[i], headers=headers)#必须要有headers,要不然无法访问
 	hot_html=hot_response.text
 	hot_label=re.findall(r'keywords" content="(.*?)"/><meta itemProp="answerCount"', hot_html)#抓取所有热词
+	hot_name=re.findall(r'><title data-react-helmet="true">(.*?) - 知乎</title><meta name="viewport"', hot_html)#抓取标题
+	print('%d.'%(i+1), end='')
+	print(hot_name[0])
 	for i in range(len(hot_label)):
 		label_list.append(hot_label[i])
 print(label_list)
